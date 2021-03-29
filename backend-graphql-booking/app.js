@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const graphqlHttp = require('express-graphql');
+const { graphqlHTTP } = require('express-graphql');
 const { buildSchema } = require('graphql');
 const mongoose = require('mongoose');
 
@@ -14,7 +14,7 @@ app.use(express.json());
 
 app.use(
 	'/graphql',
-	graphqlHttp({
+	graphqlHTTP({
 		schema: buildSchema(`
         type Event {
           _id: ID!
