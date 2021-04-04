@@ -50,6 +50,7 @@ app.use(
 
         type RootMutation {
             createEvent(eventInput: EventInput): Event
+			createUser(userInput: UserInput): User
         }
 
         schema {
