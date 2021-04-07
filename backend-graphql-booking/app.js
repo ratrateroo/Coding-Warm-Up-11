@@ -78,12 +78,27 @@ app.use(
 					description: args.eventInput.description,
 					price: +args.eventInput.price,
 					date: new Date(args.eventInput.date),
+					creator: 'idgoeshere',
 				});
+				let createdEvent;
 				return event
 					.save()
 					.then((result) => {
-						console.log(result);
-						return { ...result._doc, _id: result._doc._id.toString() };
+						createdEvent = {
+							...result._doc,
+							_id: result._doc._id.toString(),
+						};
+						return User.findById('idgoeshere');
+					})
+					.then((user) => {
+						if (!user) {
+							throw new Error('User not found.');
+						}
+						user.createdEvents.push(event);
+						return user.save();
+					})
+					.then((result) => {
+						return createdEvent;
 					})
 					.catch((err) => {
 						console.log(err);
