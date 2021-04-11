@@ -58,6 +58,7 @@ app.use(
 
         type RootQuery {
             events: [Event!]!
+			bookings: [Booking!]!
         }
 
         type RootMutation {
