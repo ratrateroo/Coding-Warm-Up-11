@@ -63,6 +63,8 @@ app.use(
         type RootMutation {
             createEvent(eventInput: EventInput): Event
 			createUser(userInput: UserInput): User
+			bookEvent(eventId: ID!): Booking!
+    cancelBooking(bookingId: ID!): Event!
         }
 
         schema {
