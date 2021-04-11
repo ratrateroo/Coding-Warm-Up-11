@@ -20,6 +20,14 @@ app.use(
 	'/graphql',
 	graphqlHTTP({
 		schema: buildSchema(`
+		type Booking {
+			_id: ID!
+			event: Event!
+			user: User!
+			createdAt: String!
+			updatedAt: String!
+		}
+
         type Event {
           _id: ID!
           title: String!
