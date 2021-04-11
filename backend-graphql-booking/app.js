@@ -1,12 +1,11 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-const { graphqlHTTP } = require('express-graphql');
-const { buildSchema } = require('graphql');
-const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
 
-const Event = require('./models/event');
-const User = require('./models/user');
+const { graphqlHTTP } = require('express-graphql');
+
+const mongoose = require('mongoose');
+
+const graphQlSchema = require('./graphql/schema/index');
+const graphQlResolvers = require('./graphql/resolvers/index');
 
 const app = express();
 
@@ -19,8 +18,8 @@ app.use(express.json());
 app.use(
 	'/graphql',
 	graphqlHTTP({
-		schema: ,
-		rootValue: ,
+		schema: graphQlSchema,
+		rootValue: graphQlResolvers,
 		graphiql: true,
 	})
 );
